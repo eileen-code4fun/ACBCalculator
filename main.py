@@ -19,11 +19,15 @@ def main():
         unit = float(row['Unit'])
         price = float(row['Price'])
         ex = 1.0
+        comm = 0.0
         if 'Ex' in row:
             ex = float(row['Ex'])
-        print('Processing: {}, {}, {}, {}, {}, {}'.format(date, stock, action, unit, price, ex))
+        if 'Commission' in row:
+            comm = float(row['Commission'])
+        print('Processing: {}, {}, {}, {}, {}, {}, {}'.format(date, stock, action, unit, price, comm, ex))
         if action == 'Buy':
-            n = (price*ex, unit)
+            up = (price*unit+comm)*ex/unit
+            n = (up, unit)
             if stock in acb.keys():
                 cur = acb[stock]
                 acb[stock] = ((cur[0]*cur[1]+n[0]*n[1])/(cur[1]+n[1]), cur[1]+n[1])
@@ -34,7 +38,7 @@ def main():
                 cur = acb[stock]
                 if cur[1] < unit:
                     sys.exit('Selling more than existing for stock {} on date {}'.format(stock, date))
-                g = (price*ex-cur[0])*unit
+                g = (price*ex-cur[0])*unit-comm*ex
                 if date.year not in gain.keys():
                     gain[date.year] = {}
                 if stock in gain[date.year].keys():

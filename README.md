@@ -10,18 +10,18 @@ is `(300-150)*6=900`.
 
 The calculator expects the following format in the CSV file:
 
-| Date       | Stock  | Action | Unit    | Price    | Ex     |
-| :--------- | :----: | :----: | :-----: | :------: | -----: |
-| 2018-05-12 | GOOG   | Buy    | 10      | 700      | 1      |
-| 2018-07-23 | MSFT   | Buy    | 10      | 300      | 1.2    |
-| 2019-11-10 | APPL   | Buy    | 5       | 200      | 1.3    |
-| 2019-11-12 | AMZN   | Buy    | 10      | 2000     | 1.32   |
-| 2019-11-15 | APPL   | Sell   | 2       | 210      | 1.4    |
-| 2020-01-05 | APPL   | Buy    | 2       | 205      | 1.3    |
-| 2020-02-02 | APPL   | Sell   | 5       | 300      | 1.23   |
-| 2020-02-03 | AMZN   | Sell   | 8       | 3000     | 1.4    |
-| 2020-03-12 | GOOG   | Sell   | 5       | 1700     | 1      |
-| 2020-04-23 | MSFT   | Sell   | 10      | 250      | 1.2    |
+| Date       | Stock  | Action | Unit    | Price    | Commission | Ex     |
+| :--------- | :----: | :----: | :-----: | :------: | :--------: | -----: |
+| 2018-05-12 | GOOG   | Buy    | 10      | 700      | 3.5        | 1      |
+| 2018-07-23 | MSFT   | Buy    | 10      | 300      | 0          | 1.2    |
+| 2019-11-10 | APPL   | Buy    | 5       | 200      | 2.4        | 1.3    |
+| 2019-11-12 | AMZN   | Buy    | 10      | 2000     | 5.6        | 1.32   |
+| 2019-11-15 | APPL   | Sell   | 2       | 210      | 0          | 1.4    |
+| 2020-01-05 | APPL   | Buy    | 2       | 205      | 0          | 1.3    |
+| 2020-02-02 | APPL   | Sell   | 5       | 300      | 0          | 1.23   |
+| 2020-02-03 | AMZN   | Sell   | 8       | 3000     | 0          | 1.4    |
+| 2020-03-12 | GOOG   | Sell   | 5       | 1700     | 0          | 1      |
+| 2020-04-23 | MSFT   | Sell   | 10      | 250      | 0          | 1.2    |
 
 * `Date` column should be in the format of `YYYY-MM-DD`.
 * `Stock` column contains the stock symbol.
@@ -36,5 +36,5 @@ Other columns may be included in the CSV file but they'll all be ignored.
 # Run the calculator:
 $ python main.py sample.csv
 # Sample output:
-$ Gain: {2019: {'APPL': 68.0}, 2020: {'GOOG': 5000.0, 'AMZN': 12480.0, 'APPL': 531.9999999999999, 'MSFT': -600.0}}
+$ GGain: {2019: {'APPL': 66.75199999999995}, 2020: {'GOOG': 4998.25, 'AMZN': 12474.0864, 'APPL': 530.1279999999999, 'MSFT': -600.0}}
 ```
